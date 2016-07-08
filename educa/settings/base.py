@@ -66,7 +66,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    #'courses.middleware.SubdomainCourseMiddleware',
+    'courses.middleware.SubdomainCourseMiddleware',
 )
 
 ROOT_URLCONF = 'educa.urls'
@@ -142,3 +142,16 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+
+# E-mail
+with open(os.path.join(BASE_DIR, 'passwd')) as f:
+    secretKey = f.read().strip()
+
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_HOST_USER = 'polar9527@163.com'
+EMAIL_HOST_PASSWORD = secretKey
+EMAIL_PORT = 25
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL= EMAIL_HOST_USER
